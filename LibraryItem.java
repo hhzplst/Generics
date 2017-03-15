@@ -1,6 +1,7 @@
-public class LibraryItem {
+public abstract class LibraryItem {
   private int id;
   private String description;
+  protected Date checkoutDate, dueDate;
   private static int next_ID = 0;
 
   public LibraryItem() {
