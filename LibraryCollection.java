@@ -7,11 +7,15 @@ public class LibraryCollection<E> {
     return list.add(o);
   }
 
-  public boolean addAll(LibraryCollection<? extends E> c) {
+  public boolean addAll(LibraryCollection<E> c) {
     if (c == null)
       throw new NullPointerException();
-    for (E e : c)
-      list.add(c);
+
+    Iterator<E> it = c.getIterator();
+    while(it.hasNext()) {
+      E next = it.getNext();
+      list.add(next);
+    }
     return true;
   } 
 
@@ -23,21 +27,23 @@ public class LibraryCollection<E> {
     list.clear();
   }
 
-  public boolean removeAll(LibraryCollection<? extends E> c) {
-    for (E e : c) 
-      if (list.contains(e))
-        list.remove(e);
-
+  public boolean removeAll(LibraryCollection<E> c) {
+    Iterator<E> it = c.getIterator();
+    while(it.hasNext()) {
+      E cur = it.getNext();
+      if (list.contains(cur))
+        list.remove(cur);
+    }
     return true;
   }
 
-  public boolean retainAll(LibraryCollection<? extends E> c) {
+  public boolean retainAll(LibraryCollection<E> c) {
     if (c == null)
       throw new NullPointerException();
+
     for (E e : list)
       if (!c.contains(e))
-        list.remove(e);
-
+        list.remove(e);  
     return true;
   }
 
@@ -45,13 +51,14 @@ public class LibraryCollection<E> {
     return list.contains(o);
   }
 
-  public boolean containsAll(LibraryCollection<? extends E> c) {
+  public boolean containsAll(LibraryCollection<E> c) {
     if (c == null)
       throw new NullPointerException();
-    for (E e : c) {
-      if (!list.contains(e))
+
+    Iterator<E> it = c.getIterator();
+    while (it.hasNext())
+      if (!list.contains(it.getNext()))
         return false;
-    }
     return true;
   }
 
