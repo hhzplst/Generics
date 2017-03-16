@@ -8,10 +8,10 @@ public class DVD extends LibraryItem implements Borrowable {
   }
 
   public void setCheckoutDate(Date d) {
-
+    checkoutDate = d;
   }
 
   public void setDueDate(Date d) {
-
-  } 
+    dueDate = d;
+  }
 }
