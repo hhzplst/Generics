@@ -1,4 +1,14 @@
 public class DVD extends LibraryItem implements Borrowable {
+  private String format;
+
+  public String getFormat() {
+    return format;
+  }
+
+  public void setFormat(String f) {
+    format = f;
+  }
+
   public Date getCheckoutDate() {
     return checkoutDate;
   }
