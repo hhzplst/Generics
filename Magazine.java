@@ -11,7 +11,7 @@ public class Magazine extends LibraryItem {
   }
 
   public void setIssueDate(Date i) {
-
+    issue = i;
   }
   
 }
