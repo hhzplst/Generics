@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LibraryCollection<E> {
   private ArrayList<E> list = new ArrayList<>();
@@ -84,4 +85,15 @@ public class LibraryCollection<E> {
       }
     };
   }
+
+  public Object[] toArray() {
+    Object[] arr = new Object[list.size()];
+    for (int i = 0; i < list.size(); i++)
+      arr[i] = list.get(i);
+    return arr;
+  }
+
+  public <E> E[] toArray(E[] a) {
+    return Arrays.copyOf(a, a.length);
+  } 
 }
