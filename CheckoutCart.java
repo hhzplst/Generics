@@ -24,7 +24,7 @@ public class CheckoutCart<E extends Borrowable> extends LibraryCollection<E> {
 
      Iterator<E> it = getDueDateIterator();
      while(it.hasNext()) {
-      E e = (E)it.getNext();
+      E e = it.getNext();
       if (e instanceof Book)
         if(e.getDueDate().before(d))
           result.add((Book)e);
