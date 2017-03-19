@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LibraryCollection<E> {
   private ArrayList<E> list = new ArrayList<>();
@@ -8,13 +7,13 @@ public class LibraryCollection<E> {
     return list.add(o);
   }
 
-  public boolean addAll(LibraryCollection<E> c) {
+  public boolean addAll(LibraryCollection<? extends E> c) {
     if (c == null)
       throw new NullPointerException();
 
-    Iterator<E> it = c.getIterator();
+    Iterator<?> it = c.getIterator();
     while(it.hasNext()) {
-      E next = it.getNext();
+      E next = (E)it.getNext();
       list.add(next);
     }
     return true;
@@ -28,17 +27,17 @@ public class LibraryCollection<E> {
     list.clear();
   }
 
-  public boolean removeAll(LibraryCollection<E> c) {
-    Iterator<E> it = c.getIterator();
+  public boolean removeAll(LibraryCollection<? extends E> c) {
+    Iterator<?> it = c.getIterator();
     while(it.hasNext()) {
-      E cur = it.getNext();
+      E cur = (E)it.getNext();
       if (list.contains(cur))
         list.remove(cur);
     }
     return true;
   }
 
-  public boolean retainAll(LibraryCollection<E> c) {
+  public boolean retainAll(LibraryCollection<? extends E> c) {
     if (c == null)
       throw new NullPointerException();
 
@@ -52,13 +51,13 @@ public class LibraryCollection<E> {
     return list.contains(o);
   }
 
-  public boolean containsAll(LibraryCollection<E> c) {
+  public boolean containsAll(LibraryCollection<? extends E> c) {
     if (c == null)
       throw new NullPointerException();
 
-    Iterator<E> it = c.getIterator();
+    Iterator<?> it = c.getIterator();
     while (it.hasNext())
-      if (!list.contains(it.getNext()))
+      if (!list.contains((E)it.getNext()))
         return false;
     return true;
   }
@@ -87,13 +86,10 @@ public class LibraryCollection<E> {
   }
 
   public Object[] toArray() {
-    Object[] arr = new Object[list.size()];
-    for (int i = 0; i < list.size(); i++)
-      arr[i] = list.get(i);
-    return arr;
+    return list.toArray();
   }
 
-  public <E> E[] toArray(E[] a) {
-    return Arrays.copyOf(a, a.length);
+  public <T> T[] toArray(T[] a) {
+    return list.toArray(a);
   } 
 }
