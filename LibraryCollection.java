@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class LibraryCollection<E> {
-  private ArrayList<E> list = new ArrayList<>();
+  protected ArrayList<E> list = new ArrayList<>();
 
   public boolean add(E o) {
     return list.add(o);
